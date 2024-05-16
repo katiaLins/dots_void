@@ -24,45 +24,37 @@ case "$installChoice" in
         echo "Installing repo nonfree..."  
         sudo xbps-install -Rs void-repo-nonfree    
 
-        echo "Installing Video..."
-        sudo xbps-install -S  xf86-video-vmware xf86-video-vesa mesa wayland wayland-protocols wayland-utils dbus avahi curl 
-      
-        
-        # Edit the following list of additional applications or replace them with your own preferences
-        
+        echo "Installing Video..."  
+        sudo xbps-install -S xf86-video-vmware xf86-video-vesa mesa wayland wayland-protocols wayland-utils dbus avahi curl         
 
         echo "Installing utilities and system tools..."
-        sudo xbps-install -S gdm gnome-shell gnome-backgrounds gnome-terminal nautilus  gnome-control-center gnome-settings-daemon gnome-shell-extensions gnome-terminal firefox wget git xz unzip zip nano vim gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi utoconf automake bison m4 make libtool flex meson ninja optipng sassc
+        sudo xbps-install -S gdm gnome-shell gnome-backgrounds gnome-terminal gnome-control-center gnome-settings-daemon gnome-shell-extensions gnome-terminal 
 
         echo "Installing utilities and system tools 2..."
-        sudo sudo xbps-install -Rs xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils gnome-browser-connector
+        sudo sudo xbps-install -Rs xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils gnome-browser-connector nautilus
 
         echo "Installing additional applications..."
-        sudo xbps-install -S neofetch btop grub-customizer gvfs-mtp gvfs ntfs-3g mpv
-        # Audio
+        sudo xbps-install -S neofetch btop grub-customizer gvfs-mtp gvfs ntfs-3g mpv firefox wget git xz unzip zip nano vim gptfdisk xtools mtools mlocate 
+
+        sudo xbps-install -S fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi utoconf automake bison m4 make libtool flex meson ninja optipng sassc
+        
         echo "Installig audio"
         sudo xbps-install pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio bluez
 
         echo "Install LibreOffice:"
         sudo xbps-install libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome libreoffice-i18n-pt-BR
 
-        # Code editor
         echo "Installing flatpak..."
         sudo sudo xbps-install -S flatpak
-         
-        
-        # Screenshot utility
+
         echo "Installing Screenshot Utility..."
         sudo xbps-install NetworkManager
 
-        # Web browser
         echo "Starting services..."
         sudo sudo ln -s /etc/sv/gdm /var/service/
         sudo ln -s /etc/sv/NetworkManager /var/service/
         sudo ln -sv /etc/sv/bluetoothd /var/service
         sudo sudo ln -s /etc/sv/dbus /var/service/
-
-        sudo reboot
         
 
         	
