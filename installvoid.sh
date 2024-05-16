@@ -11,7 +11,7 @@ case "$installChoice" in
     case "$upgradeChoice" in
       y/Y/yes/Yes/YES )
         echo "Upgrading system..."
-        sudo xbps-install -Syu
+        sudo xbps-install -Syuv
       ;;
       n/N/no/No/NO )
         echo "Skipping system upgrade."
