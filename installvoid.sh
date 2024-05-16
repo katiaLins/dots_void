@@ -11,7 +11,7 @@ case "$installChoice" in
     case "$upgradeChoice" in
       y/Y/yes/Yes/YES )
         echo "Upgrading system..."
-        sudo pacman -Syu
+        sudo xbps-install -Syu
       ;;
       n/N/no/No/NO )
         echo "Skipping system upgrade."
@@ -24,20 +24,21 @@ case "$installChoice" in
         echo "Installing repo nonfree..."  
         sudo xbps-install -Rs void-repo-nonfree    
 
-        echo "Installing file managers..."
-        sudo xbps-install -S  xf86-video-vmware xf86-video-vesa mesa wayland wayland-protocols wayland-utils dbus avahi curl wget git xz unzip zip nano vim gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi utoconf automake bison m4 make libtool flex meson ninja optipng sassc
+        echo "Installing Video..."
+        sudo xbps-install -S  xf86-video-vmware xf86-video-vesa mesa wayland wayland-protocols wayland-utils dbus avahi curl 
       
-        echo "Installing utilities and system tools..."
-        sudo xbps-install -S gdm gnome-shell gnome-backgrounds gnome-terminal nautilus  gnome-control-center gnome-settings-daemon gnome-shell-extensions gnome-terminal firefox
-
-        echo "Installing utilities and system tools 2..."
-        sudo sudo xbps-install -Rs xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils gnome-browser-connector
-        
-        echo "Installing additional applications..."
-        sudo xbps-install -S neofetch btop grub-customizer gvfs-mtp gvfs ntfs-3g mpv
         
         # Edit the following list of additional applications or replace them with your own preferences
         
+
+        echo "Installing utilities and system tools..."
+        sudo xbps-install -S gdm gnome-shell gnome-backgrounds gnome-terminal nautilus  gnome-control-center gnome-settings-daemon gnome-shell-extensions gnome-terminal firefox wget git xz unzip zip nano vim gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi utoconf automake bison m4 make libtool flex meson ninja optipng sassc
+
+        echo "Installing utilities and system tools 2..."
+        sudo sudo xbps-install -Rs xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils gnome-browser-connector
+
+        echo "Installing additional applications..."
+        sudo xbps-install -S neofetch btop grub-customizer gvfs-mtp gvfs ntfs-3g mpv
         # Audio
         echo "Installig audio"
         sudo xbps-install pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio bluez
