@@ -53,10 +53,10 @@ case "$installChoice" in
         sudo xbps-install NetworkManager
 
         echo "Starting services..."
-        sudo sudo ln -s /etc/sv/gdm /var/service/
+        sudo ln -s /etc/sv/gdm /var/service/
         sudo ln -s /etc/sv/NetworkManager /var/service/
         sudo ln -sv /etc/sv/bluetoothd /var/service
-        sudo sudo ln -s /etc/sv/dbus /var/service/
+        sudo ln -s /etc/sv/dbus /var/service/
         
 
         	
