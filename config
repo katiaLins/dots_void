@@ -1,0 +1,370 @@
+#############################
+
+# Tecla modificadora
+# Mod4 = tecla super ou windows | Mod1 = alt
+# Altere apenas essa variável para trocar a tecla modificadora
+set $mod Mod4
+
+# Orientação padrão da divisão das janelas (vertical/horizontal)
+# toda vez que você fechar todas as janelas de uma área de trabalho
+# a divisão de janelas padrão será resetada para a definida nessa opção.
+#default_orientation vertical
+
+# Layout padrão para os workspaces
+# default|stacking|tabbed
+# se não definir nada, o padrão é o tiling (lado a lado)
+#worskapace_layout 
+
+# Foco sempre no ponteiro do mouse (yes/no)
+focus_follows_mouse yes
+
+# Janelas flutuantes
+floating_modifier $mod
+
+# Algumas formas de modificar uma janela flutuante
+# Nesse exemplo defini o deadbeef para sempre abrir
+# em modo floating, centralizado na tela e em um tamanho específico
+for_window [class="Deadbeef"] floating enable, resize set 1300 690, move position center
+
+# o mesmo exemplo só que abrindo a calculadora galculator
+# sempre em modo floating (o tamanho é definido pelo próprio programa). 
+# Útil para programas que não abrem "maximizados"
+for_window [class="Galculator" instance="galculator"] floating enable
+
+# Com esse atalho, troque para o de sua preferência, é possível escolher um
+# tamanho para as janelas floating.
+# no campo resize escolha o tamanho da janela flutuante
+bindsym $mod+space floating toggle; resize set 1000 590; move position center
+bindsym $mod+Shift+space floating toggle
+
+# Fechar a janela em foco
+bindsym $mod+q kill
+
+# Terminal Padrão
+bindsym $mod+t exec --no-startup-id kitty
+
+# Terminal alternativo
+# essa opção é desnecessária, uso apenas porque tenho dois terminais instalados.
+bindsym control+mod1+t exec --no-startup-id xfce4-terminal
+
+# Toggle i3bar
+# apenas se estiver usando o i3status ou i3blocks
+bindsym $mod+b bar mode toggle
+
+# dmenu (lançador de aplicações)
+# aqui você utiliza seu lançador preferido, rofi, dmenu, ulauncher, albert etc.
+bindsym $mod+a exec --no-startup-id rofi -show drun
+
+# Mudando o foco entre as janelas
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Mudando o foco entre as janelas (teclas estilo VIM)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Mudar a janela em foco de posição 
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Movendo entre as áreas de trabalho
+# move para a próxima
+bindsym control+mod1+Right workspace next
+bindsym control+mod1+Left workspace prev
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Janelas em fullscreen sobrepostas 
+# parecido com modo monocle do bspwm. Porém, só funciona com as janelas em tela cheia.
+# Logo a i3bar/polybar/tint2 ou o painel que estiver usando e todo o resto da tela ficará sobreposto.
+bindsym mod1+Tab fullscreen disable, focus Right, fullscreen enable
+
+# Retornar a última área de trabalho utilizada 
+bindsym $mod+Tab workspace back_and_forth
+
+# Formas diferentes de alterar entre o foco dos containers
+bindsym $mod+mod1+right focus next 
+bindsym $mod+mod1+left focus prev
+bindsym $mod+p focus parent; focus right 
+
+# Scratchpad
+# o scratchpad é uma área de trabalho invisível. Você lança a aplicação para o scratchpad e depois reabre
+# em qualquer área de trabalho.
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+s scratchpad show
+
+
+# Reorganizando o layout (fiz uns exemplos para mostrar o 
+# que dá para fazer)
+# Um container na vertical, dois na horizontal
+# com foco no container da direita
+#bindsym $mod+bracketright focus left, split vertical, focus right, move left
+# com foco o container da esquerda
+bindsym $mod+bracketleft split vertical, focus right, move left
+# Um container em modo normal, dois em modo tabbed
+#bindsym $mod+dead_acute focus next, split horizontal, layout tabbed, focus next, move left 
+# Reseta as configurações de layout para o padrão (definido na opção 'default orientation')
+bindsym $mod+dead_tilde layout toggle kill
+
+# Indicador de divisão das janelas (horizontal/vertical)
+# como no exemplo dos layouts, se quiser, pode usar apenas um atalho.
+bindsym $mod+v split toggle
+
+
+# Pular para uma janela urgente
+bindsym $mod+x [urgent=latest] focus
+
+# Definições de áreas de trabalho
+# Renomei as aŕeas de trabalho do jeito que achar melhor
+# é possível usar apenas ícones, apenas letras/números ou ambos, fica a critério do usuário.
+# se usar a polybar, terá que definir as áreas de trabalho no arquivo de config dela também
+# dentro do modulo do i3
+
+set $ws1 "1:"
+set $ws2 "2:  "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5:墳 "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws7 "7: "
+set $ws8 "8:  "
+set $ws9 "9:  "
+set $ws10 "10:  "
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move a janela (container) em foco para outra área de trabalho
+# SEM sair da área de trabalho atual
+#bindsym $mod+Shift+1 move container to workspace $ws1
+#bindsym $mod+Shift+2 move container to workspace $ws2
+#bindsym $mod+Shift+3 move container to workspace $ws3
+#bindsym $mod+Shift+4 move container to workspace $ws4
+#bindsym $mod+Shift+5 move container to workspace $ws5
+#bindsym $mod+Shift+6 move container to workspace $ws6
+#bindsym $mod+Shift+7 move container to workspace $ws7
+#bindsym $mod+Shift+8 move container to workspace $ws8
+#bindsym $mod+Shift+9 move container to workspace $ws9
+#bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Move a janela em foco (container) e TAMBÉM move para o
+# novo workspace, ou seja, você muda a janela em foco e
+# o workspace com único comando
+bindsym $mod+Shift+1 move container to workspace $ws1 ; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2 ; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3 ; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4 ; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5 ; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6 ; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7 ; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8 ; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9 ; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10 ; workspace $ws10
+
+# Abrindo programas em áreas de trabalho específicas (usei vários programas, apenas como exemplo)
+# Repare que em algumas linhas temos o complemento "for_window" e "focus", que serve para, ao abrir o programa, 
+# o foco mudar para a área de trabalho em que o programa foi aberto.
+# Se quiser, pode apenas designar uma área de trabalho para o programa, sem mudar o foco, como pode ser visto no primeiro exemplo, do firefox. 
+# Nesses casos, apenas pegue a classe da janela com o comando "xprop | grep WM_CLASS". Rode o comado no termial e clique com 
+# o ponteiro do mouse em cima da janela que você deseja obter a classe.
+
+# Abrindo o programa em uma área específica (sem foco)
+# nesse caso a janela aberta será marcada como urgent.
+assign [class="^firefox$"] $ws2
+
+# Abrindo em uma área de trabalho específica e com foco
+# ou seja, se não estiver na área de trabalho que o
+# programa abrir, você será levado para ela.
+assign [class="^Xfce4-terminal$"] $ws3
+for_window [class="^Xfce4-terminal$"] focus
+
+# É possível definir vários programas em uma mesma área de trabalho sem
+# repetir o comando assign ou for_window. Apenas separe os nomes com | (pipe)
+assign [class="^SiriKali|KeePassXC|qBittorrent|Pavucontrol$"] $ws8
+for_window [class="^SiriKali|KeePassXC$"] focus
+
+# Definindo um layout específico para determinados programas
+# quando o psensor ou o virt-manager estiverem abertos na
+# areá de trabalho 10, eles automaticamente vão abrir
+# no layout tabbed. Isso pode ser feito com qualquer layout
+assign [class="^Psensor$|Virt-manager"] $ws10
+for_window [class="^Psensor$|Virt-manager"] layout tabbed focus
+
+# Recarregar, Encerrar e Sair do i3
+#reload apenas recarrega os atalhos de teclado.
+bindsym $mod+Shift+c reload
+# restart recarrega o ambiente inteiro, incluindo o painel que estiver utilizando.
+bindsym $mod+Shift+r restart
+# encerra a sessão do i3wm com um dialogo de confirmação
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# encerra a sessão do i3 SEM dialogo de informação. O i3 será encerrado
+# SEM perdir confirmação
+bindsym $mod+Shift+t exec exit
+
+# Redimensionar a janela 
+# o mesmo pode ser feito com mouse + tecla modificadora próximo as bordas das janelas
+# funciona também no modo floating. É necessário mais de um container (janela) 
+# aberto ou, se existir apenas um container, ele PRECISA ser floating
+
+
+
+mode "resize" {
+        # Altere os valores em px para aumentar ou diminuir a 
+        # use as teclas direcionais para redimensionar
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # sair do modo de redimensionamento: Enter, Esc ou $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Configurações i3status
+# se for utilizar outro painel, comente todas as linhas baixo (entre colchetes).
+bar {
+        status_command i3blocks
+        position top
+        height 20      # essa opção só está disponível a partir da versão 4.22
+        font pango:JetBrainsMono NF 9
+        separator_symbol "|"
+        workspace_buttons yes
+
+    colors {
+	      background #24292f
+	      statusline #b96b70
+	      separator  #787878
+          
+  
+        ##			            Contorno-Interior-Número/Nome
+        focused_workspace	   	#ba6a6f  #ba6a6f  #303642
+        active_workspace	   	#ba6a6f  #ba6a6f  #303642 
+        inactive_workspace   	#3F3F3F  #3F3F3F  #DCDCDC
+        urgent_workspace	   	#EC93D3  #EC93D3  #f5f5f5 
+        binding_mode		    #93E0E3  #93E0E3  #f5f5f5
+
+
+       
+    }
+
+}
+
+#Configurar cor das bordas               border  backgr. text    indicator child_border
+client.focused          #b17ef4 #b17ef4 #b17ef4 #b17ef4   #b17ef4 
+client.focused_inactive #b17ef4 #b17ef4 #b17ef4 #b17ef4   #b17ef4 
+client.unfocused       #b17ef4 #b17ef4 #b17ef4 #b17ef4   #b17ef4 
+client.urgent           #b17ef4 #b17ef4 #b17ef4 #b17ef4   #b17ef4 
+client.placeholder      #bc1069 #bc1069 #bc1069 #bc1069   #bc1069
+
+
+
+# Programas que iniciam com a sessão do i3wm -------------------------#
+# Aqui coloco o que irá iniciar junto com o i3wm (modifique para as suas necessidades).
+# polkit, gerenciador de notificação, applet de rede, compositor, wallpaper etc.
+# adione os programas que for utilizar, deixei alguns que utilizo como exemplo. 
+#
+# Ao executar um programa no i3, temos duas opções: exec e exec_always
+# o exec executa o programa apenas quando o i3 inicializa
+# o exec_always executa o comando TODA vez que o arquivo de configuração do i3 é recarregado
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id numlockx on
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /etc/polkit-1/localauthority/50-local.d/10-udisks.pkla
+exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id picom
+exec dbus-launch i3 
+exec udiskie -t &
+exec --no-startup-id /etc/polkit-1/localauthority/50-local.d/10-udiskie.pkla 
+exec udiskie -2 -s &
+exec thunar --daemon &
+exec --no-startup-id nm-applet
+exec --no-startup-id pa-applet
+exec --no-startup-id blueman-applet
+exec brightnessctl s 30%- &
+# Gaps (apenas para quem utiliza os gaps) ----------------------------#
+# Os gaps podem ser configurados de forma bem mais completa
+# Leiam a sessão 6.24 da wiki https://i3wm.org/docs/userguide.html#changing_gaps
+
+for_window [class="^.*"] border pixel 1
+smart_gaps on   # desabilita os gaps quando existir apenas um container (janela)
+gaps inner 3
+gaps outer 1
+font pango:JetBrainsMono NF 7
+
+# Atalhos de teclado para abrir programas ----------------------------#
+# Sessão opcional. Gosto de abrir alguns programas direto com atalhos.
+# Se não gostar, não use. Pode abrir só com o lançador de aplicações.
+bindsym --release $mod+w exec firefox
+bindsym --release $mod+e exec thunar
+bindsym --release $mod+s exec code-oss 
+bindsym control+mod1+l exec i3lock -c "#000000"
+
+# Repare que em vários momentos utilizo a opção "--no-startup-id" para abrir um programa. 
+# Com essa opção, evitamos que fique aparecendo aquele cursor de sempre carregando.
+# é uma boa prática sempre utilizar essa opção
+
+# Definindo o wallpaper
+# usei o feh, mas você pode usar o nitrogen ou a ferramenta de sua preferência.
+# Se preferir o nitrogen, troque o feh pelo comando nitrogen --restore
+exec_always --no-startup-id nitrogen --bg-fill $HOME/Imagens/03.png
+# você também pode carregar o script que salva as informações do feh.
+# Dessa forma, toda vez que alterar o wallpaper com o comando acima, ele irá
+# salvar as alterações nesse arquivo. Para restaurar, basta carregar da seguinte forma:
+exec --no-startup-id $HOME/.fehbg
+
+# Atalhos do cmus-remote ---------------------------------------------# 
+bindsym --release $mod+c exec xfce4-terminal -e /bin/cmus
+bindsym $mod+F1 exec cmus-remote -u
+bindsym $mod+F2 exec cmus-remote -v -5%
+bindsym $mod+F3 exec cmus-remote -v +5%
+bindsym $mod+F4 exec cmus-remote -r
+bindsym $mod+F5 exec cmus-remote -n
+
+# Nas duas sessões abaixo "Teclas multimídia" e "Brilho de tela" se não utilizar notebook, ignore. 
+# as opções de tecla multimídia valem também para teclados que contenham esse tipo de tecla.
+# para esses atalhos funcionarem, é necessário o pulseaudio e o xbacklight
+
+# Brilho da tela -----------------------------------------------------#
+# depende do xbkacklight
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# Esquema de cores padrão --------------------------------------------#
+# Utilizo um arquivo separado para as cores. Nesse caso é mais fácil de alterar
+# o esquema de cores quando quiser. Um exemplo de pode ser encontrado em:
+# https://i3wm.org/docs/userguide.html#client_colors
+include $HOME/.config/i3/dark_pastels.theme
+
+
+
+# Fonte padrão do ambiente -------------------------------------------#
+# pegue o nome da fonte com o comando: fc-list
+# ou fc-list | grep nome_da_fonte para pesquisar uma fonte específica
+
+
+
+
+# toggle gaps (adicionar ou remover os gaps quando quiser)
+# Requer, pelo menos, a versão 4.22 do i3wm
+bindsym $mod+shift+equal gaps inner all toggle 6, gaps outer all toggle 2
